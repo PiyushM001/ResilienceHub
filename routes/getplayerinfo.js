@@ -12,7 +12,7 @@ router.post(
   return;
  }
  res.status(200).send(playerinfo);
-
+return
     } catch (error) {
       res.status(500).send(" something error ")
       return;

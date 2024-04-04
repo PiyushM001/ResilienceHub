@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const info = require("../schema/info");
+const team = require("../schema/team");
+
+// const team = require("../schema/team");
+
 const { body, validationResult } = require("express-validator");
 const fetchuser = require('../middleware/fetchuser')
 router.post(
@@ -30,6 +34,11 @@ const resultarray = result.array();
           playerid:req.body.playerid,
 
       })
+      const teaminfo  =  await team.create({
+        _userid:userid,
+        teamname:req.body.teamname
+
+    })
       res.status(200).json(infomation);
   
     } catch (error) {
