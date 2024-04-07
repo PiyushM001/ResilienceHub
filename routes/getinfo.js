@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const info = require("../schema/info");
 const fetchuser = require('../middleware/fetchuser')
-router.get(
+router.post(
   "/", fetchuser,  async (req,res)=>{
 
     try {
