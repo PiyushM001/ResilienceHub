@@ -17,6 +17,5 @@ router.get(
     } catch (error) {
       res.send(" something error ")
     }
-
   })
   module.exports = router;

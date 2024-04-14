@@ -22,6 +22,8 @@ app.use('/invite', require('./routes/invite'));
 app.use('/team', require('./routes/team'));
 app.use('/createteam', require('./routes/createteam'));
 app.use('/getnotification', require('./routes/getnotification'));
+app.use('/checkfollow', require('./routes/checkfollow'));
+app.use('/post', require('./routes/post'));
 
 
 

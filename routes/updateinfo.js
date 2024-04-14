@@ -30,10 +30,10 @@ router.put('/', fetchuser, async (req, res) => {
   
         // Find the note to be updated and update it
         let information = await info.findById(infoid);
-        if (!information) { return res.status(400).json("Not Found") }
+        if (!information) { return res.status(400).json(infoid) }
   
         if (information.user.toString() !== userfromtoken.id) {
-            return res.status(400).json("Not Allowed");
+            return res.status(400).json(information.user);
         }
         information = await info.findByIdAndUpdate(infoid, { $set: newinfo }, { new: true })
         res.json({ information });
