@@ -22,7 +22,6 @@ router.put('/', fetchuser, async (req, res) => {
         if (skill3) { newinfo.skill3 = skill3 };
         if (playerid) { newinfo.playerid = playerid };
         if (location) { newinfo.location = location };
-
         if (tournament1) { newinfo.tournament1 = tournament1};
         if (tournament2) { newinfo.tournament2 =tournament2 };
 

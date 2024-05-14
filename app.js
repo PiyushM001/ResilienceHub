@@ -19,7 +19,11 @@ app.use('/deleteinfo', require('./routes/deleteinfo'));
 app.use('/getplayerinfo', require('./routes/getplayerinfo'));
 app.use('/follow', require('./routes/follow'));
 app.use('/invite', require('./routes/invite'));
-app.use('/team', require('./routes/team'));
+app.use('/team', require('./routes/acceptinvite'));
+app.use('/ignoreinvite', require('./routes/ignoreinvite'));
+
+app.use('/getteaminfo', require('./routes/getteaminfo'));
+
 app.use('/createteam', require('./routes/createteam'));
 app.use('/getnotification', require('./routes/getnotification'));
 app.use('/checkfollow', require('./routes/checkfollow'));

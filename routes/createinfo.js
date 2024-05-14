@@ -13,6 +13,7 @@ router.post(
     // if (!result.isEmpty()) {
     //   return res.send({ errors: result.array() });
     // }
+    const userid = userfromtoken.id;
 
     const result = validationResult(req);
     if (!result.isEmpty()) {
@@ -20,10 +21,14 @@ const resultarray = result.array();
       return res.status(404).json(resultarray[0].msg);
     }
 
-
+    const check = await info.findOne({user:userid});
+    if (check) {
+      res.status(404).json("info already updated");
+      return;
+    }
 
     try {
-      const userid = userfromtoken.id;
+     
       const infomation  =  await info.create({
           user:userid,
           IngameName:req.body.IngameName,
@@ -39,7 +44,7 @@ const resultarray = result.array();
         teamname:req.body.teamname
 
     })
-      res.status(200).json(infomation);
+     return res.status(200).json(infomation);
   
     } catch (error) {
       res.status(404).json("Internal server error");

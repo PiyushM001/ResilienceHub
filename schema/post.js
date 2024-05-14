@@ -20,12 +20,7 @@ RealName:{
 description: { type: String, require: true },
 Photo: {
     type:Buffer,
-    default: "no photo",
-},
-  
-  postedat: {
-    type: Date,
-    default: Date.now
+    
   }
 
 

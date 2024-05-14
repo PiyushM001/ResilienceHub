@@ -10,8 +10,11 @@ router.put('/', fetchuser, async (req, res) => {
     const { _userid } = req.body;
     const user1 = userfromtoken.id;
     const user = await team.findOne({_userid});
+
+    
     const userp = {id:user1,followerRealName:req.body.followerRealName,followerIngameName:req.body.followerIngameName}
     const userm = {id:req.body._userid,followerRealName:req.body.RealName,followerIngameName:req.body.IngameName}
+
 
     if (!user) { 
         res.status(404).send("can't find user")
@@ -25,19 +28,19 @@ router.put('/', fetchuser, async (req, res) => {
     }
     // user.followers.some(follower => follower.id === userp.id)
     // only follow if the user is not following already
-    if (user.team.some(teammate => teammate.id === user1)) {
-        res.status(400).send("already in team")
-        return
-    }
+    // if (user.team.some(teammate => teammate.id === user1)) {
+    //     res.status(400).send("already in team")
+    //     return
+    // }
  
     await team.findOneAndUpdate({_userid:_userid}, {
-      $push: { team: userp },
+      $pull: { team: userp },
     });
-    await team.findOneAndUpdate({_userid:user1}, {
-      $push: { team: userm },
-    });
+    // await team.findOneAndUpdate({_userid:user1}, {
+    //   $pull: { team: userm },
+    // });
   
-    res.status(200).send("invitation sent")
+    res.status(200).send("ignored")
     return
   })
   

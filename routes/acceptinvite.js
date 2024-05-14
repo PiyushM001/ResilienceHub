@@ -7,38 +7,37 @@ const fetchuser = require('../middleware/fetchuser')
 router.put('/', fetchuser, async (req, res) => {
     //user 1 is the person who is following others
     //user  is the id which is being followe by person 1 
-    const { _userid ,teamname} = req.body;
+    const { _userid } = req.body;
     const user1 = userfromtoken.id;
     const user = await team.findOne({_userid});
-    const invitinguser = {id:user1,followerRealName:req.body.followerRealName,followerIngameName:req.body.followerIngameName,teamname:teamname}
-    const inviteduser= {id:req.body._userid,RealName:req.body.RealName,IngameName:req.body.IngameName}
 
-    if (!user) {
+    
+    const userp = {id:user1,followerRealName:req.body.followerRealName,followerIngameName:req.body.followerIngameName}
+    const userm = {id:req.body._userid,followerRealName:req.body.RealName,followerIngameName:req.body.IngameName}
+
+
+    if (!user) { 
         res.status(404).send("can't find user")
         return
     }
-    if (!teamname) {
-      res.status(404).send("Make your team to invite")
-      return
-  }
+  
     // make the sure the user is not the logged in user
     if (req.body._id ===user1) {
         res.status(400).send("cant invite yourself")
         return
     }
-    // user.followers.some(follower => follower.id === invitinguser.id)
-   // only follow if the user is not following already
+    // user.followers.some(follower => follower.id === userp.id)
+    // only follow if the user is not following already
     if (user.team.some(teammate => teammate.id === user1)) {
         res.status(400).send("already in team")
         return
     }
  
     await team.findOneAndUpdate({_userid:_userid}, {
-      $push: { invitinguser: invitinguser },
-      
+      $push: { team: userp },
     });
     await team.findOneAndUpdate({_userid:user1}, {
-      $push: { inviteduser: inviteduser},
+      $push: { team: userm },
     });
   
     res.status(200).send("invitation sent")

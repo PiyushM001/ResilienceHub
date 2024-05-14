@@ -17,8 +17,6 @@ router.post(
           RealName:req.body.RealName,
           description:req.body.description,
           photo:req.body.photo,
-        
-
       })
       
       res.status(200).json(postinformation);
@@ -30,5 +28,5 @@ router.post(
    
 
 
-  })
+  }) 
   module.exports = router;
