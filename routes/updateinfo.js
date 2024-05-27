@@ -5,25 +5,23 @@ const info = require("../schema/info");
 const fetchuser = require('../middleware/fetchuser')
 
 router.put('/', fetchuser, async (req, res) => {
-    const { about,contact1,contact2,text,education , skill1, skill2, skill3, playerid, location, tournament1, tournament2,  infoid} = req.body;
+    const { about,contact1,contact2,text,education ,addedskill, playerid, location, tournament1, tournament2,  infoid} = req.body;
+    
     try {
         // Create a newNote object
         const newinfo = {};
         // if (IngameName) { newinfo.IngameName =IngameName };
         // if (RealName) { newinfo.RealName = RealName };
         // if (game) { newinfo.game = game };
-        if (about) { newinfo.about = about };
-        if (contact1) { newinfo.contact1 =contact1 };
-        if (contact2) { newinfo.contact2 = contact2 };
-        if (text) { newinfo.text = text };
-        if (education) { newinfo.education = education };
-        if (skill1) { newinfo.skill1 = skill1 };
-        if (skill2) { newinfo.skill2 = skill2 };
-        if (skill3) { newinfo.skill3 = skill3 };
-        if (playerid) { newinfo.playerid = playerid };
-        if (location) { newinfo.location = location };
-        if (tournament1) { newinfo.tournament1 = tournament1};
-        if (tournament2) { newinfo.tournament2 =tournament2 };
+        if (about !=" ") { newinfo.about = about };
+        if (contact1 !=" ") { newinfo.contact1 =contact1 };
+        if (contact2 !=" ") { newinfo.contact2 = contact2 };
+        if (text !=" ") { newinfo.text = text };
+        if (education !=" ") { newinfo.education = education };
+        if (playerid !=" ") { newinfo.playerid = playerid };
+        if (location !=" ") { newinfo.location = location };
+        if (tournament1 !=" ") { newinfo.tournament1 = tournament1};
+        if (tournament2 !=" ") { newinfo.tournament2 =tournament2 };
 
         
   
@@ -34,7 +32,8 @@ router.put('/', fetchuser, async (req, res) => {
         if (information.user.toString() !== userfromtoken.id) {
             return res.status(400).json(information.user);
         }
-        information = await info.findByIdAndUpdate(infoid, { $set: newinfo }, { new: true })
+        information = await info.findByIdAndUpdate(infoid, {
+            $push: { skill2:{skill:addedskill} } }, { $set: newinfo }, { new: true })
         res.json({ information });
     } catch (error) {
         console.error(error.message);
