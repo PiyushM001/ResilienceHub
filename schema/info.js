@@ -60,11 +60,6 @@ const infoSchema = new Schema({
   location: {
     type: String,
   },
-  tournament1: {
-    type: String,
-  },
-  tournament2: {
-    type: String,
-  },
+  tournament2: [{ type: Object, ref: "info" }],
 });
 module.exports = mongoose.model("info", infoSchema);
