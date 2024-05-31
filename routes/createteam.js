@@ -1,46 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const team = require("../schema/team");
+const chatdb = require("../schema/chat");
+
 // const team = require("../schema/team");
 
 const { body, validationResult } = require("express-validator");
 const fetchuser = require('../middleware/fetchuser');
-// router.post(
-//   "/", fetchuser, async (req,res)=>{
-//     // const result = validationResult(req);
-//     // if (!result.isEmpty()) {
-//     //   return res.send({ errors: result.array() });
-//     // }
-
-// //     const result = validationResult(req);
-// //     if (!result.isEmpty()) {
-// // const resultarray = result.array();
-// //       return res.status(404).json(resultarray[0].msg);
-// //     }
 
 
+router.post('/', fetchuser, async (req, res) => {
 
-//     try {
-//       const userid = userfromtoken.id;
-//       const teaminfo  =  await team.create({
-//         _userid:userid,
-//           teamname:req.body.teamname
+  const {teamname}= req.body;
+  // const {  userRealName,userId,time,msg }= req.body;
 
-//       })
-   
-//       res.status(200).json(teaminfo);
-  
-//     } catch (error) {
-//       res.status(404).json("Internal server error");
-//       return;
-//     }
-   
+const chat  = {
+    userId:" ",
+    userRealName:" ",
+    userId:" ",
+    time:" ",
+    message: "Start a chat with your TeamMates",
 
-
-//   })
-
-router.put('/', fetchuser, async (req, res) => {
-  const { teamname } = req.body;
+}
   try {
       // Create a newNote object
       const newinfo = {};
@@ -50,13 +31,16 @@ router.put('/', fetchuser, async (req, res) => {
       // if (game) { newinfo.game = game };
       if (teamname) { newinfo.teamname = teamname };
       
-      // Find the note to be updated and update it
-      let information = await team.findOne({_userid:userid})
-      // if (!information) { return res.status(400).json("not found") }
 
-      // if (information.user.toString() !== userfromtoken.id) {
-      //     return res.status(400).json(information.user);
-      // }
+      const chats  =  await chatdb.create({
+        group:teamname,
+        chat:chat
+
+    })
+      // Find the note to be updated and update it
+
+      let information = await team.findOne({_userid:userid})
+
        information = await team.findOneAndUpdate( {_userid:userid}, { $set: newinfo }, { new: true })
       res.json({ information });
   } catch (error) {

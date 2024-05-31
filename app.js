@@ -21,6 +21,8 @@ app.use('/follow', require('./routes/follow'));
 app.use('/invite', require('./routes/invite'));
 app.use('/team', require('./routes/acceptinvite'));
 app.use('/ignoreinvite', require('./routes/ignoreinvite'));
+app.use('/chat', require('./routes/chatting'));
+app.use('/getChats', require('./routes/getChats'));
 
 app.use('/getteaminfo', require('./routes/getteaminfo'));
 
