@@ -35,6 +35,7 @@ router.put('/', fetchuser, async (req, res) => {
  
     await team.findOneAndUpdate({_userid:_userid}, {
       $push: { invitinguser: invitinguser },
+      $inc: { NotificationCount: 1 },
       
     });
     await team.findOneAndUpdate({_userid:user1}, {

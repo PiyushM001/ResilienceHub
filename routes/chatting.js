@@ -5,6 +5,9 @@ const chatdb = require("../schema/chat");
 
 // const team = require("../schema/team");
 
+
+
+
 router.post(
   "/", async (req,res)=>{
   
@@ -22,7 +25,8 @@ const chatobj  = {
         await chatdb.findOneAndUpdate({group:teamname}, {
             $push: {chat:chatobj }       
           });
-     
+          
+          io.to(teamname).emit("newMessage", chatobj);
      return res.status(200).json("msg sent");
   
     } catch (error) {

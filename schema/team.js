@@ -8,8 +8,11 @@ const teamSchema = new Schema({
   },
   teamname: { type: String, require: true },
   team: [{ type: Object, ref: "team" }],
-
- inviteduser: [{ type: Object, ref: "team" }],
+  NotificationCount: {
+    type: Number,
+    default: 0,
+  },
+  inviteduser: [{ type: Object, ref: "team" }],
  invitinguser: [{ type: Object, ref: "team" }],
 
 });

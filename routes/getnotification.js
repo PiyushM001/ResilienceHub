@@ -7,7 +7,9 @@ router.get(
 
     try {
       const _userid = userfromtoken.id;
- const notification = await team.findOne({_userid});
+ const notification = await team.find({_userid});
+
+
  if(!notification){
   res.status(404).send("cant find team")
   return

@@ -61,5 +61,10 @@ const infoSchema = new Schema({
     type: String,
   },
   tournament2: [{ type: Object, ref: "info" }],
+
+  profilePicture: String,
+  profilePictureUrl: String,
+  bgPicture: String,
+  bgPictureUrl: String,
 });
 module.exports = mongoose.model("info", infoSchema);
