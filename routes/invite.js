@@ -18,7 +18,7 @@ router.put('/', fetchuser, async (req, res) => {
         return
     }
     if (!teamname) {
-      res.status(404).send("Make your team to invite")
+      res.status(404).send("Make your Team to invite for Teamup")
       return
   }
     // make the sure the user is not the logged in user
@@ -29,7 +29,7 @@ router.put('/', fetchuser, async (req, res) => {
     // user.followers.some(follower => follower.id === invitinguser.id)
    // only follow if the user is not following already
     if (user.team.some(teammate => teammate.id === user1)) {
-        res.status(400).send("already in team")
+        res.status(400).send("Already in team")
         return
     }
  
@@ -42,7 +42,7 @@ router.put('/', fetchuser, async (req, res) => {
       $push: { inviteduser: inviteduser},
     });
   
-    res.status(200).send("invitation sent")
+    res.status(200).send("invitation sent for TeamUp")
     return
   })
   
