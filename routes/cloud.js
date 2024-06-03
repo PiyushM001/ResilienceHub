@@ -85,7 +85,7 @@ router.get('/profile-picture/:userId', async (req, res) => {
     if (user && user.profilePictureUrl) {
       res.status(200).send({ url: user.profilePictureUrl,url2:user.bgPictureUrl });
     } else {
-      res.status(404).send('Profile picture not found');
+      res.status(200).send('Profile picture not found');
     }
   } catch (error) {
     res.status(500).send('Server error');
