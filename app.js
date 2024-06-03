@@ -89,6 +89,8 @@ app.use('/chat', require('./routes/chatting'));
 app.use('/getChats', require('./routes/getChats'));
 app.use('/cloud',require('./routes/cloud'));
 app.use('/getteaminfo', require('./routes/getteaminfo'));
+app.use('/getposts', require('./routes/getpost.js'));
+app.use('/like', require('./routes/like.js'));
 
 app.use('/createteam', require('./routes/createteam'));
 app.use('/getnotification', require('./routes/getnotification'));

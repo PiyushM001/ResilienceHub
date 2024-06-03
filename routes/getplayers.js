@@ -4,17 +4,27 @@ const info = require("../schema/info");
 
 // Search route
 router.post("/", async (req, res) => {
-    const __v = 0;
+    
     const query = req.query.q;
     const page = parseInt(req.query.page) || 1;
+    const limit = 12;
+
     try {
         let players;
         if (query) {
-            // Perform a case-insensitive search on the 'name' field
-            players = await info.find({ __v, IngameName: new RegExp(query, 'i') });
+            // Perform a case-insensitive search on the 'IngameName' field
+            players = await info.aggregate([
+                { $match: { IngameName: new RegExp(query, 'i') } },
+                { $sample: { size: limit } } // Randomly select 'limit' documents
+            ]);
         } else {
-            // If no query is provided, return all players
-            players = await info.find({ __v }).skip((page - 1)*10).limit(10);
+            // If no query is provided, return a random selection of players with pagination
+            players = await info.aggregate([
+                
+                { $sample: { size: 30 } }, // Randomly select 100 documents (adjust size as needed)
+                { $skip: (page - 1) * limit },
+                { $limit: limit }
+            ]);
         }
         res.status(200).send(players);
     } catch (error) {

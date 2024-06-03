@@ -6,8 +6,6 @@ const PostSchema = new Schema({
     type: String,
     require: true,
   },
- 
-  
   IngameName:{
     type:String,
    require:true
@@ -18,12 +16,19 @@ RealName:{
 
 },
 description: { type: String, require: true },
-Photo: {
-    type:Buffer,
-    
-  }
 
+PostUrl: String,
+profilephoto: String,
+likesCount: {
+  type: Number,
+  default: 0,
+},
 
+LikedBy: [{ type: Object, ref: "info" }],
+date:{
+  default:Date.now(),
+  type:Date
+      }
 
 });
 module.exports = mongoose.model("post", PostSchema);

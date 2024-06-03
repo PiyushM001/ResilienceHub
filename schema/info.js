@@ -15,7 +15,7 @@ const infoSchema = new Schema({
     require: true,
   },
   team: [{ type: Object, ref: "info" }],
-
+  posts: [{ type: Object, ref: "info" }],
   followers: [{ type: Object, ref: "info" }],
   followersCount: {
     type: Number,
