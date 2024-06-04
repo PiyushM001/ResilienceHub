@@ -16,9 +16,43 @@ const connectdb = require('./db');
 connectdb();
 
 
+
+
+
+
+
+
+
+
+app.use(express.json());
+app.use('/login', require('./routes/login'));
+app.use('/signin', require('./routes/signin'));
+app.use('/getplayers', require('./routes/getplayers'));
+app.use('/createinfo', require('./routes/createinfo'));
+app.use('/getinfo', require('./routes/getinfo'));
+app.use('/updateinfo', require('./routes/updateinfo'));
+app.use('/deleteinfo', require('./routes/deleteinfo'));
+app.use('/getplayerinfo', require('./routes/getplayerinfo'));
+app.use('/follow', require('./routes/follow'));
+app.use('/invite', require('./routes/invite'));
+app.use('/team', require('./routes/acceptinvite'));
+app.use('/ignoreinvite', require('./routes/ignoreinvite'));
+app.use('/chat', require('./routes/chatting'));
+app.use('/getChats', require('./routes/getChats'));
+app.use('/cloud',require('./routes/cloud'));
+app.use('/getteaminfo', require('./routes/getteaminfo'));
+app.use('/getposts', require('./routes/getpost.js'));
+app.use('/like', require('./routes/like.js'));
+
+app.use('/createteam', require('./routes/createteam'));
+app.use('/getnotification', require('./routes/getnotification'));
+app.use('/checkfollow', require('./routes/checkfollow'));
+app.use('/post', require('./routes/post'));
+
+
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000", // Replace with your frontend URL
+    origin: "https://myallies.netlify.app/", // Replace with your frontend URL
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -65,40 +99,6 @@ io.on("connection", (socket) => {
     console.log("Client disconnected");
   });
 });
-
-
-
-
-
-
-
-app.use(express.json());
-app.use('/login', require('./routes/login'));
-app.use('/signin', require('./routes/signin'));
-app.use('/getplayers', require('./routes/getplayers'));
-app.use('/createinfo', require('./routes/createinfo'));
-app.use('/getinfo', require('./routes/getinfo'));
-app.use('/updateinfo', require('./routes/updateinfo'));
-app.use('/deleteinfo', require('./routes/deleteinfo'));
-app.use('/getplayerinfo', require('./routes/getplayerinfo'));
-app.use('/follow', require('./routes/follow'));
-app.use('/invite', require('./routes/invite'));
-app.use('/team', require('./routes/acceptinvite'));
-app.use('/ignoreinvite', require('./routes/ignoreinvite'));
-app.use('/chat', require('./routes/chatting'));
-app.use('/getChats', require('./routes/getChats'));
-app.use('/cloud',require('./routes/cloud'));
-app.use('/getteaminfo', require('./routes/getteaminfo'));
-app.use('/getposts', require('./routes/getpost.js'));
-app.use('/like', require('./routes/like.js'));
-
-app.use('/createteam', require('./routes/createteam'));
-app.use('/getnotification', require('./routes/getnotification'));
-app.use('/checkfollow', require('./routes/checkfollow'));
-app.use('/post', require('./routes/post'));
-
-
-
 
 server.listen(port, ()=>{
     console.log('server listning at port 5000')
