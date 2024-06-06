@@ -57,10 +57,10 @@ const io = socketIo(server, {
     credentials: true,
     
   },
-  allowRequest:(req, callback) => {
-    const noOriginHeader = req.headers.origin === undefined;
-    callback(null, noOriginHeader); // only allow requests without 'origin' header
-  }
+  // allowRequest:(req, callback) => {
+  //   const noOriginHeader = req.headers.origin === undefined;
+  //   callback(null, noOriginHeader); // only allow requests without 'origin' header
+  // }
 });
 
 
