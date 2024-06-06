@@ -54,7 +54,12 @@ const io = socketIo(server, {
   cors: {
     origin: "https://myallies.netlify.app", // Replace with your frontend URL
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
+    
+  },
+  allowRequest:(req, callback) => {
+    const noOriginHeader = req.headers.origin === undefined;
+    callback(null, noOriginHeader); // only allow requests without 'origin' header
   }
 });
 
