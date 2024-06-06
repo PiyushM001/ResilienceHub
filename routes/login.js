@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const students = require("../schema/user");
 const bcrypt = require('bcrypt');
-const jwtsecret = "piyush";
+require('dotenv').config();
+
+const jwtsecret = process.env.jwtsecret
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 
@@ -47,3 +49,7 @@ const resultarray = result.array();
 
 });
 module.exports = router;
+
+
+
+

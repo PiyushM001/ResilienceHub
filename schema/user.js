@@ -6,6 +6,12 @@ const userSchema = new Schema({
         type:String,
         require:true
     },
+    otp:{
+        type:Number,
+    },
+    otpExpiry:{
+type:Number
+    },
     password:{
         type:String,
         require:true
