@@ -52,7 +52,7 @@ app.use('/post', require('./routes/post'));
 
 const io = socketIo(server, {
   cors: {
-    origin: "https://myallies.netlify.app/", // Replace with your frontend URL
+    origin: "https://myallies.netlify.app", // Replace with your frontend URL
     methods: ["GET", "POST"],
     credentials: true
   }
