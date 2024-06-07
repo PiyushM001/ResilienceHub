@@ -4,7 +4,7 @@ const students = require("../schema/user");
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const jwtsecret = process.env.jwtsecret
+const jwtsecret = "piyush"
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 
