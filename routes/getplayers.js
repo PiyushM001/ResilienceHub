@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     
     const query = req.query.q;
     const page = parseInt(req.query.page) || 1;
-    const limit = 12;
+    const limit = 10;
 
     try {
         let players;
@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
             // If no query is provided, return a random selection of players with pagination
             players = await info.aggregate([
                 
-                { $sample: { size: 30 } }, // Randomly select 100 documents (adjust size as needed)
+                // { $sample: { size: 30 } }, // Randomly select 100 documents (adjust size as needed)
                 { $skip: (page - 1) * limit },
                 { $limit: limit }
             ]);

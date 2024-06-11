@@ -8,7 +8,7 @@ const team = require("../schema/team");
 const { body, validationResult } = require("express-validator");
 const fetchuser = require('../middleware/fetchuser')
 router.post(
-  "/", fetchuser,  [  body("RealName","Name should be longer1").isLength({ min:1}),body("IngameName","Name should be longer2").isLength({ min:1}),body("game","Name should be longer").isLength({ min:1})], async (req,res)=>{
+  "/", fetchuser,  [  body("RealName","Name should be longer").isLength({ min:1}),body("IngameName","Name should be longer2").isLength({ min:1}),body("game","Name should be longer").isLength({ min:1})], async (req,res)=>{
     // const result = validationResult(req);
     // if (!result.isEmpty()) {
     //   return res.send({ errors: result.array() });
@@ -26,6 +26,7 @@ const resultarray = result.array();
       res.status(404).json("info already updated");
       return;
     }
+
 
     try {
      
