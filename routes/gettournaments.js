@@ -93,5 +93,42 @@ router.post(
         }
      
     
+
       })
+
+
+
+
+      router.post(
+        "/checkregistration",fetchuser,async (req,res)=>{
+         
+          try {
+            const userid = userfromtoken.id;
+            
+       const information = await info.findOne({user:userid});
+     
+       
+       const informationcheck = await tournament.findById(req.body._id)
+  
+       if (informationcheck.registered.some(follower => follower.user === userid)) {
+        res.status(200).send(true)
+        return
+    }
+  
+  
+  
+        
+  
+  
+  
+      
+           return res.status(200).send(false);
+          } catch (error) {
+            res.send(" something went wrong ")
+          }
+       
+      
+        })
+
+
   module.exports = router;
