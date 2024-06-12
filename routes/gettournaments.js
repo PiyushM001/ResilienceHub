@@ -122,7 +122,7 @@ router.post(
   
   
       
-           return res.status(200).send(false);
+           return res.status(400).send(false);
           } catch (error) {
             res.send(" something went wrong ")
           }
