@@ -15,15 +15,6 @@ const connectdb = require('./db');
 
 connectdb();
 
-
-
-
-
-
-
-
-
-
 app.use(express.json());
 app.use('/login', require('./routes/login'));
 app.use('/signin', require('./routes/signin'));
@@ -49,11 +40,12 @@ app.use('/createteam', require('./routes/createteam'));
 app.use('/getnotification', require('./routes/getnotification'));
 app.use('/checkfollow', require('./routes/checkfollow'));
 app.use('/post', require('./routes/post'));
+app.use('/speakup', require('./routes/speakup'));
 
 
 const io = socketIo(server, {
   cors: {
-    origin: "https://myallies.netlify.app", // Replace with your frontend URL
+    origin: "https://localhost:3000", // Replace with your frontend URL
     methods: ["GET", "POST"],
     credentials: true,
     
